@@ -20,12 +20,16 @@
 
 .bodyclass {
     background-color: rgb(36, 48, 66);
+    background-image: url("../images/324371.jpg");
+
 }
 
 #mainBox {
 
     height: 600px;
 }
+
+
 
 #openerH1Text {
     font-family: 'Francois One', sans-serif;
@@ -38,5 +42,11 @@
     font-family: 'Francois One', sans-serif;
     font-weight: bold;
     padding-bottom: 20px;
+
+}
+
+.form-control:hover{
+background-color: rgb(124, 235, 255);
+
 
 }
