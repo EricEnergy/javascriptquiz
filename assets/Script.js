@@ -61,12 +61,14 @@ var index = 0;
 var choices = jsQuestions[index].choices;
 var title = jsQuestions[index].title;
 var answers = jsQuestions[index].answer;
+var scorename = localStorage.key(0);
+var scoreNumber = localStorage.getItem("eric");
 
 //start up screen locations
 var h1El = document.createElement("h1");
 var h1E2A = document.createElement("h3");
 var h1E2B = document.createElement("h3");
-var h1E5 = document.createElement("h5");
+var h1E4 = document.createElement("h4");
 var infoEl = document.createElement("div");
 var pEl = document.createElement("p");
 var buttonEl = document.createElement("button");
@@ -84,6 +86,11 @@ startUpFuntion()
 
 
 function startUpFuntion() {
+
+
+    h1E4.textContent = "Winners Table"
+    $("#winners").append(h1E4);
+    $("#winnersScores").append("Name " + scorename + " Score "+ scoreNumber);
 
     //adds first line of text
     h1El.textContent = "Coding Quiz Challenge!"
@@ -135,6 +142,9 @@ function setTime() {
 
 function quizTime() {
     $(".buttonHolder").empty();
+    $("#winners").empty();
+    $("#winnersScores").empty();
+
     h1El.textContent = "Question " + (index + 1);
     $(".questionTop").append(h1El);
     $("h1El").attr("style", "margin:auto; width:50%; text-align:center;");
