@@ -7,6 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>JavaScript Quiz</title>
 
+
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
@@ -14,26 +15,27 @@
 
   <link rel="stylesheet" type="text/css" href="./assets/style.css">
 
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 
 </head>
 
 <body class="bodyclass">
 
+
+
   <div class="container">
 
     <div class="row">
 
-                      <!-- Top section-->
+      <!-- Top section-->
       <div id="highScoreButton" class="btn-primary mx-auto border">
         Current Score <span id="currScore" class="badge badge-light "></span>
       </div>
 
       <header>
-        <h1 class="text-center text-white font-weight-bolder mx-auto mt-3">JavaScript Quiz</h1>
+        <h1 id="middleText " class="headertext text-center  font-weight-bolder mx-auto mt-3"><a
+            href="index.html">JavaScript Quiz</a></h1>
       </header>
 
       <div id="highScoreButton2" class="btn-primary mx-auto border">
@@ -41,25 +43,24 @@
       </div>
     </div>
 
-                        <!-- Jumbotron-->
-    <div id="mainBox" class="jumbotron shadow-lg bg-white mt-2">
-     
-      <div class="questionTop">
 
-      </div>
-
-      <div class="answersBottum">
-
-        </div>
-  
-
-
+    <!-- Jumbotron-->
+    <div id="mainBox" class="jumbotron shadow-lg bg-white mt-2 margin:auto; ">
+      <div class="ImageHolder"></div>
+      <div class="questionTop margin:auto; text-align:center; center-block"></div>
+      <div class="buttonHolder"></div>
+      <div class="answersBottum"></div>
+      <form id="mainForm" class="form-Control form-control-lg m-2">
+       
+        </form>
+        <div class="endInfo"></div>
+        
+      <iframe width="10" height="10" src="https://www.youtube.com/embed/_QqWO5kKFWc?&autoplay=1;" allow="autoplay" frameborder="0" allow="accelerometer; autoplay=1; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 
 
       <script type="text/javascript" src="./assets/Script.js"></script>
-        <script type="text/javascript" src="./assets/questions.js">
-      </script>
+      <script type="text/javascript" src="./assets/questions.js"></script>
 </body>
 
 </html>

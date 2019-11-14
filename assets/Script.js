@@ -23,9 +23,7 @@ var jsQuestions = [
         title: 'Which of the following function of String object combines the text of two strings and returns a new string?',
         choices: ['add()', 'merge()', 'concat()', 'append()'],
         answer: 'concat()'
-    }
-];
-var htmlQuestions = [
+    },
     {
         title: 'Select the correct option to open a link in a new browser window?',
         choices: ['A href="url" target="_blank"', 'A href="url" new', 'A href="url" target="new"', 'A href="url" target=_window"', 'None of the above.'],
@@ -50,7 +48,9 @@ var htmlQuestions = [
         title: 'In CSS,select the property used to set the background color of an image?',
         choices: ['color', 'background:color', 'background-color', 'color:background'],
         answer: 'background-color'
-    }
+    },
+
+
 ];
 
 var jumbroTron = $("#mainBox"); //where im placing my text
@@ -64,14 +64,20 @@ var answers = jsQuestions[index].answer;
 
 //start up screen locations
 var h1El = document.createElement("h1");
+var h1E2A = document.createElement("h3");
+var h1E2B = document.createElement("h3");
+var h1E5 = document.createElement("h5");
 var infoEl = document.createElement("div");
 var pEl = document.createElement("p");
 var buttonEl = document.createElement("button");
 var buttonE2 = document.createElement("button1");
-var hr = document.createElement("hr");
 var rowmaker = document.createElement("row");
-var timeLocation= document.getElementById("countdown");
+var timeLocation = document.getElementById("countdown");
 var secondsLeft = 60;
+var formMaker = "";
+var timerInterval;
+var imgEnd = $('<img id= imageId src="./images/winner.jpg">');
+var inputField = $('<input type="text" placeholder="Enter Your Name Here" name="firstName-text" id="firstName-text" />');
 
 
 startUpFuntion()
@@ -81,25 +87,24 @@ function startUpFuntion() {
 
     //adds first line of text
     h1El.textContent = "Coding Quiz Challenge!"
-    jumboTest.appendChild(h1El);
+    $(".questionTop").append(h1El);
     h1El.setAttribute("style", "margin:auto; width:50%; text-align:center;");
     h1El.setAttribute("id", "openerH1Text");
 
     // adds p tag statement
     pEl.textContent = "Try to answer the following within the time limit. Keep in mind that the inccorret answer will penalize scoretime by 10 seconds"
-    jumboTest.appendChild(pEl);
+    $(".questionTop").append(pEl);
     pEl.setAttribute("style", "margin:auto; width:50%; text-align:center;");
     pEl.setAttribute("id", "openerPText");
 
     // adds a button
     jumboTest.appendChild(infoEl);
-    infoEl.setAttribute("style", "margin:auto; text-align:center;");
     buttonEl.textContent = "Start Quiz";
-    jumboTest.children[5].appendChild(buttonEl);
-    buttonEl.setAttribute("class", "btn btn-secondary margin:auto;");
+    $(".buttonHolder").append(buttonEl);
+    buttonEl.setAttribute("class", "btn center-block btn-secondary margin:auto");
     buttonEl.setAttribute("type", "button");
     buttonEl.addEventListener("click", function () {
-       
+
         quizTime();
         setTime()
     });
@@ -111,15 +116,17 @@ function startUpFuntion() {
 
 
 function setTime() {
-  var timerInterval = setInterval(function() { secondsLeft--;
-    timeLocation.textContent = secondsLeft;
+    timerInterval = setInterval(function () {
+        secondsLeft--;
+        timeLocation.textContent = secondsLeft;
 
-    if(secondsLeft === 0) {
-      clearInterval(timerInterval);
-      confirm("Your time is up Sucka");
-    }
+        if (secondsLeft < 0) {
+            clearInterval(timerInterval);
+            confirm("Your time is up Sucka");
+            endOfGame()
+        }
 
-  }, 1000);
+    }, 1000);
 }
 
 
@@ -127,17 +134,15 @@ function setTime() {
 
 
 function quizTime() {
-   
-
+    $(".buttonHolder").empty();
     h1El.textContent = "Question " + (index + 1);
-    jumboTest.appendChild(h1El);
+    $(".questionTop").append(h1El);
     $("h1El").attr("style", "margin:auto; width:50%; text-align:center;");
     $("h1El").attr("id", "openerH1Text");
-
-    pEl.textContent = title;
-    jumboTest.appendChild(pEl);
     pEl.setAttribute("style", "margin:auto; width:50%; text-align:center;");
-    (infoEl).remove();
+    pEl.textContent = title;
+    $(".answersBottum").append(pEl);
+
 
 
 
@@ -145,8 +150,7 @@ function quizTime() {
         var formMaker = document.createElement("form");
         formMaker.textContent = choices[i];
         formMaker.setAttribute("class", "form-control form-control-lg m-2");
-        formMaker.setAttribute("type", "text");
-        jumboTest.appendChild(formMaker);
+        $("#mainForm").append(formMaker);
         formMaker.setAttribute("id", "rownumber" + i);
         formMaker.addEventListener("click", function (event) {
             console.log("click");
@@ -154,12 +158,18 @@ function quizTime() {
 
             if (event.target.textContent === answers) {
                 console.log("click correctr");
-
                 index++;
                 highScore = highScore + 10;
                 $("#currScore").text(highScore);
-                console.log(index);
-                console.log(highScore);
+                if (index === jsQuestions.length) {
+                    endOfGame()
+                } else {
+                    choices = jsQuestions[index].choices;
+                    title = jsQuestions[index].title;
+                    answers = jsQuestions[index].answer;
+                    
+                    clearBoxes()
+                }
             }
             else {
                 console.log("bugg");
@@ -169,3 +179,23 @@ function quizTime() {
         })
     }
 };
+
+function clearBoxes() {
+    $("#mainForm").empty();
+    quizTime();
+}
+
+function endOfGame() {
+    $(".questionTop").empty();
+    $(".answersBottum").empty();
+    $("#mainForm").empty();
+    clearInterval(timerInterval);
+    $(".ImageHolder").append(imgEnd);
+    $("#mainForm").append(inputField);
+    h1E2A.textContent = "Congrats, Add Your Name Please.";
+    $(".endInfo").append(h1E2A);
+    h1E2B.textContent = "Your Score Was " + (highScore) + "!!!";
+    $(".endInfo").append(h1E2B);
+
+};
+

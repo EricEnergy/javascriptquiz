@@ -46,7 +46,39 @@
 }
 
 .form-control:hover{
-background-color: rgb(124, 235, 255);
+background-color: rgb(124, 255, 238);
+}
+
+a:hover {
+  color: rgb(167, 234, 255);
+
+}
+
+a {
+    color: rgb(255, 255, 255);
+}
+
+.buttonHolder {
+margin-left: 45%;
+}
+
+#imageId  {
+display: block;
+margin-left: auto;
+margin-right: auto;
+height: 200px;
+width: 400px;
+}
+
+h3 {
+    text-align: center;
+}
+
+input {
+    margin: auto;
+    display: block;
+margin-left: auto;
+margin-right: auto;
 
 
 }
