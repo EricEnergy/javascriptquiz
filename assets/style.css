@@ -87,3 +87,17 @@ h4 {
     margin: auto;
 
 }
+
+#winnersScores {
+    text-align: center;
+    margin-right: 0%;
+    font-weight: bold;
+    font-size: 20px;
+
+}
+
+h4 {
+    text-decoration: underline;
+    margin-bottom: 5px;
+
+}

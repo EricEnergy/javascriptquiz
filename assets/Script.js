@@ -61,8 +61,7 @@ var index = 0;
 var choices = jsQuestions[index].choices;
 var title = jsQuestions[index].title;
 var answers = jsQuestions[index].answer;
-var scorename = localStorage.key(0);
-var scoreNumber = localStorage.getItem("eric");
+
 
 //start up screen locations
 var h1El = document.createElement("h1");
@@ -70,6 +69,8 @@ var h1E2A = document.createElement("h3");
 var h1E2B = document.createElement("h3");
 var h1E4 = document.createElement("h4");
 var infoEl = document.createElement("div");
+var brElement = document.createElement("br");
+var brElement1 = document.createElement("br");
 var pEl = document.createElement("p");
 var buttonEl = document.createElement("button");
 var buttonE2 = document.createElement("button1");
@@ -79,21 +80,30 @@ var secondsLeft = 60;
 var formMaker = "";
 var timerInterval;
 var imgEnd = $('<img id= imageId src="./images/winner.jpg">');
-var inputField = $('<input type="text" placeholder="Enter Your Name Here" name="firstName-text" id="firstName-text" />');
-
+var inputField = $('<input type="text" placeholder="Enter Your Name Here" id="firstNametext" />');
+var scorename1 = localStorage.key(0);
+var scorename2 = localStorage.key(1);
+var scorename3 = localStorage.key(2);
+var scoreNumber1 = localStorage.getItem(scorename1);
+var scoreNumber2 = localStorage.getItem(scorename2);
+var scoreNumber3 = localStorage.getItem(scorename3);
+var i = 0;
 
 startUpFuntion()
 
 
 function startUpFuntion() {
 
-
-    h1E4.textContent = "Winners Table"
+    
+    h1E4.textContent = "Three Most Recent Winners"
     $("#winners").append(h1E4);
-    $("#winnersScores").append("Name " + scorename + " Score "+ scoreNumber);
-
     //adds first line of text
     h1El.textContent = "Coding Quiz Challenge!"
+    $("#winnersScores").append("Name: " + scorename1 + " Score: "+ scoreNumber1);
+    $("#winnersScores").append(brElement);
+    $("#winnersScores").append("Name: " + scorename2 + " Score: "+ scoreNumber2);
+    $("#winnersScores").append(brElement1);
+    $("#winnersScores").append("Name: " + scorename3 + " Score: "+ scoreNumber3);
     $(".questionTop").append(h1El);
     h1El.setAttribute("style", "margin:auto; width:50%; text-align:center;");
     h1El.setAttribute("id", "openerH1Text");
@@ -208,4 +218,17 @@ function endOfGame() {
     $(".endInfo").append(h1E2B);
 
 };
+
+
+$(jumbroTron).submit('submit', function(event){
+    event.preventDefault();
+    event.stopPropagation()
+    if (event) {
+        alert("Thank you for playing! Your Score has been saved!");
+    }
+    var winnerInput = document.querySelector("#firstNametext").value
+    localStorage.setItem(winnerInput , JSON.stringify(highScore));
+    
+  
+});
 
