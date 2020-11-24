@@ -81,9 +81,9 @@ var formMaker = "";
 var timerInterval;
 var imgEnd = $('<img id= imageId src="./images/winner.jpg">');
 var inputField = $('<input type="text" placeholder="Enter Your Name Here" id="firstNametext" />');
-var scorename1 = localStorage.key(0);
-var scorename2 = localStorage.key(1);
-var scorename3 = localStorage.key(2);
+var scorename1 = localStorage.key("score1");
+var scorename2 = localStorage.key("score2");
+var scorename3 = localStorage.key("score3");
 var scoreNumber1 = localStorage.getItem(scorename1);
 var scoreNumber2 = localStorage.getItem(scorename2);
 var scoreNumber3 = localStorage.getItem(scorename3);
@@ -139,7 +139,7 @@ function setTime() {
 
         if (secondsLeft < 0) {
             clearInterval(timerInterval);
-            confirm("Your time is up Sucka");
+            confirm("Your time is up! Thanks for playing.");
             endOfGame()
         }
 
