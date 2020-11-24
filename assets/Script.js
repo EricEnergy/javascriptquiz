@@ -81,29 +81,27 @@ var formMaker = "";
 var timerInterval;
 var imgEnd = $('<img id= imageId src="./images/winner.jpg">');
 var inputField = $('<input type="text" placeholder="Enter Your Name Here" id="firstNametext" />');
-var scorename1 = localStorage.key("score1");
-var scorename2 = localStorage.key("score2");
-var scorename3 = localStorage.key("score3");
-var scoreNumber1 = localStorage.getItem(scorename1);
-var scoreNumber2 = localStorage.getItem(scorename2);
-var scoreNumber3 = localStorage.getItem(scorename3);
+var scoreNumber1 = localStorage.getItem("TestScore");
 var i = 0;
 
 startUpFuntion()
 
 
 function startUpFuntion() {
-
-    
-    h1E4.textContent = "Three Most Recent Winners"
+    console.log()
+    if(scoreNumber1 === null){
+        $("#winnersScores").append("TBD");
+    } else {
+        var myObj = JSON.parse(scoreNumber1);
+        $("#winnersScores").append("Name: " + myObj[0].Name + " Score: " + myObj[0].Score);
+        $("#winnersScores").append(brElement);
+    };
+    h1E4.textContent = "Most Recent Score"
     $("#winners").append(h1E4);
     //adds first line of text
     h1El.textContent = "Coding Quiz Challenge!"
-    $("#winnersScores").append("Name: " + scorename1 + " Score: "+ scoreNumber1);
-    $("#winnersScores").append(brElement);
-    $("#winnersScores").append("Name: " + scorename2 + " Score: "+ scoreNumber2);
-    $("#winnersScores").append(brElement1);
-    $("#winnersScores").append("Name: " + scorename3 + " Score: "+ scoreNumber3);
+    // myObj.forEach(element => console.log(element));
+    
     $(".questionTop").append(h1El);
     h1El.setAttribute("style", "margin:auto; width:50%; text-align:center;");
     h1El.setAttribute("id", "openerH1Text");
@@ -187,7 +185,7 @@ function quizTime() {
                     choices = jsQuestions[index].choices;
                     title = jsQuestions[index].title;
                     answers = jsQuestions[index].answer;
-                    
+
                     clearBoxes()
                 }
             }
@@ -220,15 +218,19 @@ function endOfGame() {
 };
 
 
-$(jumbroTron).submit('submit', function(event){
+$(jumbroTron).submit('submit', function (event) {
+    var winnerInput = document.querySelector("#firstNametext").value
+    var inputs = [{
+      "Name": winnerInput, "Score": JSON.stringify(highScore) 
+    }];
     event.preventDefault();
     event.stopPropagation()
     if (event) {
         alert("Thank you for playing! Your Score has been saved!");
     }
-    var winnerInput = document.querySelector("#firstNametext").value
-    localStorage.setItem(winnerInput , JSON.stringify(highScore));
-    
-  
+    localStorage.setItem("TestScore", JSON.stringify(inputs));
+    window.location.reload()
+
+
 });
 
